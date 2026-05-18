@@ -665,4 +665,4 @@ setTimeout(function() {
         const appContent = document.getElementById('appContent');
         if (appContent) appContent.style.display = 'block';
     }
-}, 3000); // Hide after 3 seconds as fallback
+}, 5000); // Hide after 5 seconds as fallback
