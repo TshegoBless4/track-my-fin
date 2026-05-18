@@ -635,3 +635,34 @@ function init() {
 }
 
 init();
+// ============================================
+// SPLASH SCREEN - HIDE AFTER LOADING
+// ============================================
+
+// Wait for page to fully load, then hide splash and show app
+window.addEventListener('load', function() {
+    // Show the app content first (hidden behind splash)
+    const appContent = document.getElementById('appContent');
+    if (appContent) {
+        appContent.style.display = 'block';
+    }
+    
+    // Splash screen will fade out automatically via CSS animation
+    // After animation ends, remove it from DOM
+    const splash = document.getElementById('splashScreen');
+    if (splash) {
+        splash.addEventListener('animationend', function() {
+            splash.style.display = 'none';
+        });
+    }
+});
+
+// Optional: Fallback to ensure splash disappears even if animation fails
+setTimeout(function() {
+    const splash = document.getElementById('splashScreen');
+    if (splash && splash.style.display !== 'none') {
+        splash.style.display = 'none';
+        const appContent = document.getElementById('appContent');
+        if (appContent) appContent.style.display = 'block';
+    }
+}, 3000); // Hide after 3 seconds as fallback
